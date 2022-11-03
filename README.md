@@ -1,1 +1,1 @@
-# Digital Lync LMS
+# Kona LMS
