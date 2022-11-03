@@ -1,0 +1,32 @@
+# Docker compose start container with env variables
+services:
+  local-db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=itjustworks
+      - POSTGRES_DB=mydb
+    ports:
+      - "5432:5432"
+    
+  api-server:
+    image: lms-api-server
+    environment:
+      - MODE=
+      - PORT=
+      - DATABASE_URL=
+      - AUTH0_DOMAIN=
+      - AUTH0_API_AUDIENCE=
+      - AUTH0_API_APP_RESOURCE_ID=
+      - AUTH0_API_APP_IDENTIFIER=
+      - AUTH0_MGMT_CLIENT_ID=
+      - AUTH0_MGMT_CLIENT_SECRET=
+      - AZURE_STORAGE_BLOB_PUBLIC_CONTAINER_NAME=
+      - AZURE_STORAGE_CONNECTION_STRING=
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - local-db
+
